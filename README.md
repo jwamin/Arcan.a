@@ -26,7 +26,7 @@ Best of luck!
 
 * Shuffle Deck
 
-* identify card from id 0-77
+* Identify card from id 0-77
 
 * Randomly assign inversion for card
 
@@ -37,7 +37,7 @@ Best of luck!
 #### TODO
 
 * Extract chosen court card
-    * shuffle remaining deck
+    * Shuffle remaining deck
 
 * Analyse reading (primarily suits / major arcana etc)
 
