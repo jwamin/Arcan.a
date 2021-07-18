@@ -1,6 +1,7 @@
 #include "arcana.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <assert.h>
 
 struct Card* deal(){
 
@@ -75,9 +76,9 @@ void identifyCard(Card* card) {
         //MINOR ARCANA
         unsigned int minor_index = index - 22;
         unsigned int suitIndex = minor_index / 14;
-        const char* suitString = getSuit(suitIndex);
-        unsigned int cardNumber = minor_index - ((suitIndex * 14));
+        unsigned int cardNumber = minor_index % 14;
 
+        const char* suitString = getSuit(suitIndex);
         const char* str = getMinorString(cardNumber+1);
 
         printf("%d is Minor Arcana: The %s of %s, isInverted: %d\n",index,str,suitString,card->inverted);
