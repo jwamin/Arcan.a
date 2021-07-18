@@ -14,21 +14,55 @@ struct Card* deal(){
         currentCard->index = i;
     }
 
-    //TODO: Shuffle deck
+    shuffle(cards);
 
-    //return the newly created deck
+    //return the newly created and shuffled deck
     return cards;
+
+}
+
+void read(Card* deck){
+
+    printf("Your %d-card tarot reading:\n",DEAL);
+    for (int i = 0; i < DEAL; ++i) {
+        printf("Card %d: ",i+1);
+        identifyCard(&deck[i]);
+    }
+    printf("Best of luck!\n");
+}
+
+// Basic F-Y Shuffle
+struct Card* shuffle(Card *deck){
+
+    unsigned int swapIndex;
+    Card* swap;
+
+    for (unsigned int current = 0; current < CARD_COUNT; ++current) {
+        swapIndex = current + arc4random_uniform(CARD_COUNT - current);
+        if (swapIndex != current){
+            //printf("%d will swap %d with %d\n",current,deck[current].index,deck[swapIndex].index);
+            //assign swap to current index
+            swap = &deck[current];
+            //make current the randomly selected index
+            deck[current] = deck[swapIndex];
+            //make random index the currentIndex
+            deck[swapIndex] = *swap;
+            if (current == 0){
+                deck = swap;
+            }
+        }
+    }
+
+    return deck;
 
 }
 
 void identifyCard(Card* card) {
     unsigned int index = card->index;
 
-
-
     if (index < 22) {
         // MAJOR ARCANA
-        printf("card %d is MAJOR ARCANA, isInverted: %d\n",card->index,card->inverted);
+        printf("%d is MAJOR ARCANA, isInverted: %d\n",card->index,card->inverted);
         switch (card->index) {
             case FOOL:
                 printf("it's the fool\n");
@@ -46,7 +80,7 @@ void identifyCard(Card* card) {
 
         const char* str = getMinorString(cardNumber+1);
 
-        printf("card %d is Minor Arcana: The %s of %s, isInverted: %d, cardNumber:%d\n",index,str,suitString,card->inverted,cardNumber);
+        printf("%d is Minor Arcana: The %s of %s, isInverted: %d\n",index,str,suitString,card->inverted);
     }
 
 }
@@ -65,7 +99,8 @@ const char* getMinorString(unsigned int suitIndex) {
             case KING:
                 return "King";
             default:
-                return "";
+                printf("this shouldn't happen");
+                exit(EXIT_FAILURE);
         }
     } else {
         char *out = malloc(sizeof(char)*10);

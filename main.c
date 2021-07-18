@@ -3,12 +3,11 @@
 //
 
 #include "arcana.h"
-
+#include <stdio.h>
 int main(){
-
+    printf("Welcome to Arcan.a\n");
     Card* deckTop = deal();
-    for (int i = 0; i < CARD_COUNT; ++i) {
-        identifyCard(&deckTop[i]);
-    }
+    read(deckTop);
 
+    return 0;
 }
