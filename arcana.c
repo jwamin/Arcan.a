@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#ifndef ARC4RANDOM_UNIFORM
+#ifndef _STDLIB_H_
 #include <bsd/bsd.h>
 #endif
 
