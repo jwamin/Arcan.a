@@ -7,7 +7,7 @@
 int main(){
     printf("Welcome to Arcan.a\n");
     Card* deckTop = deal();
-    read(deckTop);
+    readMyTarot(deckTop);
 
     return 0;
 }

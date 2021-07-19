@@ -58,7 +58,7 @@ typedef struct Deal {
 
 struct Card* deal();
 
-void read(Card* deck);
+void readMyTarot(Card* deck);
 
 struct Card* shuffle(Card *deck);
 

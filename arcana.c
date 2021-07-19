@@ -1,7 +1,10 @@
 #include "arcana.h"
 #include <stdlib.h>
 #include <stdio.h>
-#include <assert.h>
+
+#ifndef ARC4RANDOM_UNIFORM
+#include <bsd/bsd.h>
+#endif
 
 struct Card* deal(){
 
@@ -22,7 +25,7 @@ struct Card* deal(){
 
 }
 
-void read(Card* deck){
+void readMyTarot(Card* deck){
 
     printf("Your %d-card tarot reading:\n",DEAL);
     for (int i = 0; i < DEAL; ++i) {
