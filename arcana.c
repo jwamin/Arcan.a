@@ -83,7 +83,6 @@ void identifyCard(Card* card) {
 }
 
 const char* getMajorString(unsigned int cardNumber) {
-    if (cardNumber < 22) {
         switch (cardNumber) {
             case FOOL:
                 return "0: THE FOOL";
@@ -130,11 +129,10 @@ const char* getMajorString(unsigned int cardNumber) {
                 return "XX: JUDGEMENT";
             case WORLD:
                 return "XXI: THE WORLD";
+            default:
+                printf("major arcana card out of index <0 / >22");
+                exit(EXIT_FAILURE);
         }
-    } else {
-        printf("major arcana card out of index <0 / >22");
-        exit(EXIT_FAILURE);
-    }
 }
 
 const char* getMinorString(unsigned int suitIndex) {
