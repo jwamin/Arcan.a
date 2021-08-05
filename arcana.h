@@ -15,10 +15,10 @@ typedef enum Major_Arcana {
     HIEROPHANT,
     LOVERS,
     CHARIOT,
-    JUSTICE,
+    STRENGTH,
     HERMIT,
     WHEEL_OF_FORTUNE,
-    STRENGTH,
+    JUSTICE,
     HANGED_MAN,
     DEATH,
     TEMPERANCE,
@@ -66,6 +66,10 @@ void identifyCard(Card* card);
 
 const char* getSuit(unsigned int suitIndex);
 
+//Get String for Major Arcana Card
+const char* getMajorString(unsigned int cardNumber);
+
+//Get Court or Ace string
 const char* getMinorString(unsigned int suitIndex);
 
 #endif //ARCAN_A_ARCANA_H

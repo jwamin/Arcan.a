@@ -5,17 +5,19 @@
 ```
 Welcome to Arcan.a
 Your 10-card tarot reading:
-Card 1: 49 is Minor Arcana: The King of Cups, isInverted: 0
-Card 2: 8 is MAJOR ARCANA, isInverted: 1
-Card 3: 13 is MAJOR ARCANA, isInverted: 0
-Card 4: 33 is Minor Arcana: The Knight of Wands, isInverted: 0
-Card 5: 62 is Minor Arcana: The Queen of Swords, isInverted: 0
-Card 6: 22 is Minor Arcana: The Ace of Wands, isInverted: 1
-Card 7: 51 is Minor Arcana: The 2 of Swords, isInverted: 0
-Card 8: 50 is Minor Arcana: The Ace of Swords, isInverted: 1
-Card 9: 21 is MAJOR ARCANA, isInverted: 1
-Card 10: 29 is Minor Arcana: The 8 of Wands, isInverted: 0
+Card 1: Key 60 is in the Minor Arcana: The Paige of Swords, isInverted: 0
+Card 2: Key 45 is in the Minor Arcana: The 10 of Cups, isInverted: 1
+Card 3: Key 43 is in the Minor Arcana: The 8 of Cups, isInverted: 0
+Card 4: Key 9 is in the MAJOR ARCANA: IX: THE HERMIT, isInverted: 1
+Card 5: Key 71 is in the Minor Arcana: The 8 of Pentacles, isInverted: 1
+Card 6: Key 41 is in the Minor Arcana: The 6 of Cups, isInverted: 1
+Card 7: Key 74 is in the Minor Arcana: The Paige of Pentacles, isInverted: 1
+Card 8: Key 41 is in the Minor Arcana: The 6 of Cups, isInverted: 1
+Card 9: Key 65 is in the Minor Arcana: The 2 of Pentacles, isInverted: 1
+Card 10: Key 68 is in the Minor Arcana: The 5 of Pentacles, isInverted: 0
 Best of luck!
+
+Process finished with exit code 0
 ```
 
 ### Features 

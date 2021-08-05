@@ -66,15 +66,8 @@ void identifyCard(Card* card) {
 
     if (index < 22) {
         // MAJOR ARCANA
-        printf("%d is MAJOR ARCANA, isInverted: %d\n",card->index,card->inverted);
-        switch (card->index) {
-            case FOOL:
-                printf("it's the fool\n");
-                break;
-                //TODO: add additional cases
-            default:
-                break;
-        }
+        const char* majorString = getMajorString(card->index);
+        printf("Key %d is in the MAJOR ARCANA: %s, isInverted: %d\n",card->index,majorString,card->inverted);
     } else {
         //MINOR ARCANA
         unsigned int minor_index = index - 22;
@@ -84,12 +77,69 @@ void identifyCard(Card* card) {
         const char* suitString = getSuit(suitIndex);
         const char* str = getMinorString(cardNumber+1);
 
-        printf("%d is Minor Arcana: The %s of %s, isInverted: %d\n",index,str,suitString,card->inverted);
+        printf("Key %d is in the Minor Arcana: The %s of %s, isInverted: %d\n",index,str,suitString,card->inverted);
     }
 
 }
 
+const char* getMajorString(unsigned int cardNumber) {
+    if (cardNumber < 22) {
+        switch (cardNumber) {
+            case FOOL:
+                return "0: THE FOOL";
+            case MAGICIAN:
+                return "I: THE MAGICIAN";
+            case HIGH_PRIESTESS:
+                return "II: THE HIGH PRIESTESS";
+            case EMPRESS:
+                return "III: THE EMPRESS";
+            case EMPEROR:
+                return "IV: THE EMPEROR";
+            case HIEROPHANT:
+                return "V: THE HIEROPHANT";
+            case LOVERS:
+                return "VI: THE LOVERS";
+            case CHARIOT:
+                return "VII: THE CHARIOT";
+            case STRENGTH:
+                return "VIII: STRENGTH";
+            case HERMIT:
+                return "IX: THE HERMIT";
+            case WHEEL_OF_FORTUNE:
+                return "X: WHEEL OF FORTUNE";
+            case JUSTICE:
+                return "XI: JUSTICE";
+            case HANGED_MAN:
+                return "XII: THE HANGED MAN";
+            case DEATH:
+                // Remember, there's only meant to be one in each pack...
+                return "XIII: DEATH";
+            case TEMPERANCE:
+                return "XIV: TEMPERENCE";
+            case DEVIL:
+                return "XV: THE DEVIL";
+            case TOWER:
+                return "XVI: THE TOWER";
+            case STAR:
+                return "XVII: THE STAR";
+            case MOON:
+                return "XVIII: THE MOON";
+            case SUN:
+                return "XIX: THE SUN";
+            case JUDGEMENT:
+                return "XX: JUDGEMENT";
+            case WORLD:
+                return "XXI: THE WORLD";
+        }
+    } else {
+        printf("major arcana card out of index <0 / >22");
+        exit(EXIT_FAILURE);
+    }
+}
+
 const char* getMinorString(unsigned int suitIndex) {
+
+    // Is a court card or ace
     if (suitIndex > 10 || suitIndex == 1) {
         switch (suitIndex) {
             case ACE:
