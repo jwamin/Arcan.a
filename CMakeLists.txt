@@ -5,7 +5,7 @@ include(CheckSymbolExists)
 
 set(CMAKE_C_STANDARD 99)
 
-add_library(Arcan_a arcana.c arcana.h)
+add_library(Arcan_a Sources/Arcana/arcana.c Sources/Arcana/include/arcana.h)
 
 
 add_executable(Arcan_a_driver main.c)
