@@ -36,6 +36,10 @@ Process finished with exit code 0
 
 * Deal top 10 cards
 
+#### API
+
+* Swift Package
+
 #### TODO
 
 * Extract chosen court card
@@ -45,4 +49,4 @@ Process finished with exit code 0
 
 * CLI
 
-* Swift Package and Interface
+* Swift Interface

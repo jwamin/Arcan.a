@@ -1,4 +1,4 @@
-#include "arcana.h"
+#include "include/arcana.h"
 #include <stdlib.h>
 #include <stdio.h>
 
