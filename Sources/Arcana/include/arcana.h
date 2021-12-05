@@ -47,8 +47,8 @@ typedef enum CourtCard {
 } CourtCard;
 
 typedef struct Card {
-    unsigned int index;
-    unsigned int inverted;
+    unsigned char index;
+    unsigned char inverted;
 } Card;
 
 typedef struct Deal {
