@@ -1,0 +1,1 @@
+add_library(arcana arcana.c include/arcana.h)
