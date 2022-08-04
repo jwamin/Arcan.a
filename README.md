@@ -39,6 +39,7 @@ Process finished with exit code 0
 #### API
 
 * Swift Package - simply hit this repo with Xcode / swiftpm
+  * `swift build` `swift run ArcanaDriver`
 
 #### TODO
 

@@ -5,10 +5,10 @@ let package = Package(
         name: "Arcana",
         products: [
             // Products define the executables and libraries a package produces, and make them visible to other packages.
-//            .executable(
-//                    name: "ArcanaDriver",
-//                    targets:["ArcanaDriver"]
-//            ),
+            .executable(
+                    name: "ArcanaDriver",
+                    targets:["ArcanaDriver"]
+            ),
             .library(
                     name: "Arcana",
                     targets: ["Arcana"]
@@ -26,13 +26,15 @@ let package = Package(
                     dependencies: [],
                     publicHeadersPath: "./"
             ),
-//            .target(
-//                    name: "ArcanaDriver",
-//                    dependencies: [
-//                        "Arcana"
-//                    ]),
+            .target(
+                    name: "ArcanaDriver",
+                    dependencies: [
+                        "Arcana"
+                    ]),
             .testTarget(
                     name: "ArcanaTests",
-                    dependencies: ["Arcana"]),
+                    dependencies: [
+                        "Arcana"
+                    ]),
         ]
 )
