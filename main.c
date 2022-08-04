@@ -7,7 +7,7 @@
 int main(){
     printf("Welcome to Arcan.a\n");
     Card myCard;
-    myCard.index = 21;
+    myCard.index = 32;
     myCard.inverted = 0;
     printf("Your card is: \n");
     identifyCard(&myCard);
