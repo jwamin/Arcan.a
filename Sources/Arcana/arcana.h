@@ -60,7 +60,7 @@ struct Card* deal();
 
 void readMyTarot(Card* deck);
 
-struct Card* shuffle(Card *deck);
+struct Card* shuffle(Card* deck);
 
 void identifyCard(Card* card);
 

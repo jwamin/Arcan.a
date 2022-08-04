@@ -1,4 +1,4 @@
-#include "include/arcana.h"
+#include "arcana.h"
 #include <stdlib.h>
 #include <stdio.h>
 
@@ -8,7 +8,7 @@
 
 struct Card* deal(){
 
-    struct Card* cards = malloc(sizeof(struct Card) * CARD_COUNT);
+    Card* cards = malloc(sizeof(struct Card) * CARD_COUNT);
     Card* currentCard;
 
     //initialize deck

@@ -1,1 +1,1 @@
-add_library(arcana arcana.c include/arcana.h)
+add_library(arcan arcana.c arcana.h)
