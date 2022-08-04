@@ -46,8 +46,10 @@ Process finished with exit code 0
 * Extract chosen court card
     * Shuffle remaining deck
 
+* Interactive CLI
+
 * Analyse reading (primarily suits / major arcana etc)
 
-* Interactive CLI
+
 
 * Refine Swift Interface

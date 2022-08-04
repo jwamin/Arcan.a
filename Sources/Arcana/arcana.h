@@ -2,6 +2,7 @@
 #define ARCAN_A_ARCANA_H
 
 #define CARD_COUNT 78
+#define SHUFFLE_COUNT CARD_COUNT-1
 #define DEAL 10
 
 /*structs*/
@@ -56,7 +57,7 @@ typedef struct Deal {
     struct Card* courtCardForQuerant;
 } Deal;
 
-struct Card* deal();
+struct Card* deal(Card *myCard);
 
 void readMyTarot(Card* deck);
 

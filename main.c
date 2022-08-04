@@ -6,7 +6,12 @@
 #include <arcana.h>
 int main(){
     printf("Welcome to Arcan.a\n");
-    Card *deckTop = deal();
+    Card myCard;
+    myCard.index = 21;
+    myCard.inverted = 0;
+    printf("Your card is: \n");
+    identifyCard(&myCard);
+    Card *deckTop = deal(&myCard);
     readMyTarot(deckTop);
 
     return 0;
