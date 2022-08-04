@@ -38,7 +38,7 @@ Process finished with exit code 0
 
 #### API
 
-* Swift Package
+* Swift Package - simply hit this repo with Xcode / swiftpm
 
 #### TODO
 
@@ -47,6 +47,6 @@ Process finished with exit code 0
 
 * Analyse reading (primarily suits / major arcana etc)
 
-* CLI
+* Interactive CLI
 
-* Swift Interface
+* Refine Swift Interface
