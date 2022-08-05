@@ -26,30 +26,34 @@ Process finished with exit code 0
 
 * Generate Deck
 
-* Shuffle Deck
+* Shuffle Deck with Fisher-Yeates
 
-* Identify card from id 0-77
+* Identify card from index 0-77
 
 * Randomly assign inversion for card
 
 #### Dealing
 
+* Extract chosen court card
+  * Shuffle remaining deck
 * Deal top 10 cards
 
 #### API
 
 * Swift Package - simply hit this repo with Xcode / swiftpm
-  * `swift build` `swift run ArcanaDriver`
+  * `swift build` 
+  * `swift run ArcanaDriver`
+
+* Cmake Project for WSL/Linux imports `arc4random_uniform` from `bsd.h`
 
 #### TODO
 
-* Extract chosen court card
-    * Shuffle remaining deck
+* C Source cleanup
 
 * Interactive CLI
 
-* Analyse reading (primarily suits / major arcana etc)
-
-
-
 * Refine Swift Interface
+  * Wrapper to be used in GUI 
+  * Tweak swift package to build against `bsd.h`
+
+* Analyse reading (primarily suits / major arcana etc)
