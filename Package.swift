@@ -1,5 +1,14 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.0
 import PackageDescription
+
+//#if os(Linux)
+//let bsdDependency = [
+//    Package(name: "bsd",
+//            pkgConfig:"libbsd")
+//]
+//#else
+//let bsdDependency: [Package] = []
+//#endif
 
 let package = Package(
         name: "Arcana",
@@ -23,7 +32,7 @@ let package = Package(
             // Targets can depend on other targets in this package, and on products in packages this package depends on.
             .target(
                     name: "Arcana",
-                    dependencies: [],
+                    dependencies: [ ],
                     publicHeadersPath: "./"
             ),
             .target(

@@ -5,14 +5,20 @@
 import Foundation
 import Arcana
 
+func swiftPrint(_ str:String...){
+    print("Swift",terminator:"");
+    print(str)
+}
+
 func main(){
 
     #if canImport(Arcana)
     print("arcana importable")
 
-    var deck: UnsafeMutablePointer<Card>! = deal()
-
-    deck = deal()
+    var card: UnsafeMutablePointer<Card>! = getMyCard(0,11);
+    swiftPrint("hello world")
+    var deck = deal(card)
+    swiftPrint("dealt")
     readMyTarot(deck)
     free(deck)
 

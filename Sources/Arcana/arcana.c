@@ -6,13 +6,21 @@
 #include <bsd/bsd.h>
 #endif
 
-struct Card* deal(){
+struct Card* deal(Card* myCard){
 
-    Card* cards = malloc(sizeof(struct Card) * CARD_COUNT);
+    if (!validateCard(myCard) || !isCourtCard(myCard)){
+        printf("IF you don't pick a court card, i'm not reading your tarot\n");
+        return NULL;
+    }
+
+    Card* cards = malloc(sizeof(struct Card) * SHUFFLE_COUNT);
     Card* currentCard;
 
     //initialize deck
     for (int i = 0; i < CARD_COUNT; ++i) {
+        if (i == myCard->index) {
+            continue;
+        }
         currentCard = &cards[i];
         currentCard->inverted = arc4random_uniform(2);
         currentCard->index = i;
@@ -25,7 +33,19 @@ struct Card* deal(){
 
 }
 
+unsigned char validateCard(Card* card){
+    if (card == NULL){
+        return 0;
+    }
+    return 1;
+}
+
 void readMyTarot(Card* deck){
+
+    if (!validateCard(deck)){
+        printf("I failed to read your tarot - This is a VERY bad omen.\n");
+        return;
+    }
 
     printf("Your %d-card tarot reading:\n",DEAL);
     for (int i = 0; i < DEAL; ++i) {
@@ -67,7 +87,7 @@ void identifyCard(Card* card) {
     if (index < 22) {
         // MAJOR ARCANA
         const char* majorString = getMajorString(card->index);
-        printf("Key %d is in the MAJOR ARCANA: %s, isInverted: %d\n",card->index,majorString,card->inverted);
+        printf("Key %d is in the MAJOR ARCANA: %s, isInverted: %d\n", card->index, majorString, card->inverted);
     } else {
         //MINOR ARCANA
         unsigned int minor_index = index - 22;
@@ -77,8 +97,28 @@ void identifyCard(Card* card) {
         const char* suitString = getSuit(suitIndex);
         const char* str = getMinorString(cardNumber+1);
 
-        printf("Key %d is in the Minor Arcana: The %s of %s, isInverted: %d\n",index,str,suitString,card->inverted);
+        printf("Key %d is in the Minor Arcana: The %s of %s, isInverted: %d\n", index, str, suitString, card->inverted);
     }
+
+}
+
+
+
+unsigned char isCourtCard(Card* card){
+
+    int minor_index = card->index - (MAJOR_ARCANA_COUNT - 1);
+    unsigned char suitIndex = minor_index / 14;
+
+    if (minor_index <= 0){
+        //major arcana
+        return 0;
+    }
+
+    if (minor_index > 10) {
+        return 1;
+    }
+
+    return 0;
 
 }
 
@@ -174,4 +214,23 @@ const char* getSuit(unsigned int suitIndex){
         default:
             return "";
     }
+}
+
+Card *getMyCard(unsigned char suitIndex, unsigned char minorIndex) {
+
+    Card *myCard = (Card*) malloc(sizeof(Card));
+    myCard->index = getIndex(suitIndex,minorIndex);
+    myCard->inverted = 0;
+    identifyCard(myCard);
+    if (isCourtCard(myCard)) {
+        printf("got a court card\n");
+        return myCard;
+    }
+    printf("not a court card\n");
+    return NULL;
+
+}
+
+unsigned char getIndex(unsigned char suitIndex, unsigned char minorIndex) {
+    return minorIndex + (suitIndex * MINOR_ARCANA_COUNT) + (MAJOR_ARCANA_COUNT - 1);
 }
