@@ -1,1 +1,1 @@
-add_library(arcan arcana.c arcana.h)
+add_library(arcan arcana.c arcana.h arcana-types.h)
