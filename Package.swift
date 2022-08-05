@@ -1,17 +1,14 @@
 // swift-tools-version:5.0
 import PackageDescription
 
-#if os(Linux)
-let settings = [
-    CSetting.headerSearchPath("/usr/include/bsd")
-]
-let linker = [
-    LinkerSetting.linkedLibrary("bsd")
-]
-#else
-let settings: [CSetting] = []
-let linker: [LinkerSetting] = []
-#endif
+//#if os(Linux)
+//let bsdDependency = [
+//    Package(name: "bsd",
+//            pkgConfig:"libbsd")
+//]
+//#else
+//let bsdDependency: [Package] = []
+//#endif
 
 let package = Package(
         name: "Arcana",
@@ -35,10 +32,8 @@ let package = Package(
             // Targets can depend on other targets in this package, and on products in packages this package depends on.
             .target(
                     name: "Arcana",
-                    dependencies: [],
-                    publicHeadersPath: "./",
-                    cSettings: settings,
-                    linkerSettings: linker
+                    dependencies: [ ],
+                    publicHeadersPath: "./"
             ),
             .target(
                     name: "ArcanaDriver",
