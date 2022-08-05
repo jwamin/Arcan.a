@@ -55,6 +55,31 @@ void readMyTarot(Card* deck){
     printf("Best of luck!\n");
 }
 
+Reading *startReading(Card *myCard, Card *deck) {
+
+    Reading *reading = malloc(sizeof(Reading));
+    reading->courtCardForQuerant = myCard;
+    reading->current = 0;
+    reading->deck = deck;
+
+    return reading;
+
+}
+
+unsigned char continueReading(Reading *reading) {
+    unsigned char i = reading->current;
+
+    if (i < DEAL) {
+        printf("Card %d: ", i + 1);
+        identifyCard(&reading->deck[i]);
+        i++;
+        reading->current = i;
+        return (i == DEAL) ? 0 : 1;
+    } else {
+        return 0;
+    }
+}
+
 // Basic F-Y Shuffle
 struct Card* shuffle(Card *deck){
 
@@ -234,3 +259,5 @@ Card *getMyCard(unsigned char suitIndex, unsigned char minorIndex) {
 unsigned char getIndex(unsigned char suitIndex, unsigned char minorIndex) {
     return minorIndex + (suitIndex * MINOR_ARCANA_COUNT) + (MAJOR_ARCANA_COUNT - 1);
 }
+
+

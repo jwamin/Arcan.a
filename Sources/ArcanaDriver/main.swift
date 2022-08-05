@@ -15,9 +15,9 @@ func main(){
     #if canImport(Arcana)
     print("arcana importable")
 
-    var card: UnsafeMutablePointer<Card>! = getMyCard(0,11);
+    let card: UnsafeMutablePointer<Card>! = getMyCard(0,11);
     swiftPrint("hello world")
-    var deck = deal(card)
+    let deck = deal(card)
     swiftPrint("dealt")
     readMyTarot(deck)
     free(deck)
