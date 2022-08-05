@@ -59,9 +59,10 @@ typedef struct Card {
     unsigned char inverted;
 } Card;
 
-typedef struct Deal {
+typedef struct Reading {
     struct Card* deck;
     struct Card* courtCardForQuerant;
-} Deal;
+    unsigned char current;
+} Reading;
 
 #endif //ARCANA_TYPES_H
