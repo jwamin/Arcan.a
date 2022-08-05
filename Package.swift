@@ -1,5 +1,17 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.0
 import PackageDescription
+
+#if os(Linux)
+let settings = [
+    CSetting.headerSearchPath("/usr/include/bsd")
+]
+let linker = [
+    LinkerSetting.linkedLibrary("bsd")
+]
+#else
+let settings: [CSetting] = []
+let linker: [LinkerSetting] = []
+#endif
 
 let package = Package(
         name: "Arcana",
@@ -24,7 +36,9 @@ let package = Package(
             .target(
                     name: "Arcana",
                     dependencies: [],
-                    publicHeadersPath: "./"
+                    publicHeadersPath: "./",
+                    cSettings: settings,
+                    linkerSettings: linker
             ),
             .target(
                     name: "ArcanaDriver",
