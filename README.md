@@ -44,16 +44,21 @@ Process finished with exit code 0
   * `swift build` 
   * `swift run ArcanaDriver`
 
+#### Cross-platform
+
 * Cmake Project for WSL/Linux imports `arc4random_uniform` from `bsd.h`
+* `swiftpm` system module for `bsd.h`
+
+#### Driver Program
+
+* Interactive CLI
+  * `getchar()` used to stagger reveal of cards.
 
 #### TODO
 
 * C Source cleanup
 
-* Interactive CLI
-
 * Refine Swift Interface
-  * Wrapper to be used in GUI 
-  * Tweak swift package to build against `bsd.h`
+  * Wrapper to be used in GUI
 
 * Analyse reading (primarily suits / major arcana etc)
