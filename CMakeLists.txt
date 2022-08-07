@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.18)
-project(Arcana_drive_program C)
+project(Arcan.a C)
 
 include(CheckSymbolExists)
 
