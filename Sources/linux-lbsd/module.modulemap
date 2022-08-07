@@ -1,0 +1,4 @@
+module bsd {
+  umbrella header "./cbsd-bridging.h"
+  link "bsd"
+}

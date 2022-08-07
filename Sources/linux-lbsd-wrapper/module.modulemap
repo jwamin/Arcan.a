@@ -1,5 +1,0 @@
-module Cbsd [system] {
-  header "./cbsd-bridging.h"
-  link "linux-lbsd-wrapper"
-  export *
-}
