@@ -14,6 +14,10 @@
 
 /*structs*/
 
+typedef struct ArcanaConfig {
+    unsigned char interactive;
+} ArcanaConfig;
+
 typedef enum Major_Arcana {
     FOOL = 0,
     MAGICIAN,

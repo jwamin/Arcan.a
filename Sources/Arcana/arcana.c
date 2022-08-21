@@ -6,6 +6,8 @@
 #include <bsd/bsd.h>
 #endif
 
+
+
 struct Card* deal(Card* myCard){
 
     if (!validateCard(myCard) || !isCourtCard(myCard)){
@@ -13,7 +15,7 @@ struct Card* deal(Card* myCard){
         return NULL;
     }
 
-    Card* cards = malloc(sizeof(struct Card) * SHUFFLE_COUNT);
+    Card* cards = calloc(SHUFFLE_COUNT, sizeof(Card));
     Card* currentCard;
 
     //initialize deck
@@ -52,7 +54,7 @@ void readMyTarot(Card* deck){
         printf("Card %d: ",i+1);
         identifyCard(&deck[i]);
     }
-    printf("Best of luck!\n");
+    printf("Best o' luck!\n");
 }
 
 Reading *startReading(Card *myCard, Card *deck) {
@@ -258,6 +260,28 @@ Card *getMyCard(unsigned char suitIndex, unsigned char minorIndex) {
 
 unsigned char getIndex(unsigned char suitIndex, unsigned char minorIndex) {
     return minorIndex + (suitIndex * MINOR_ARCANA_COUNT) + (MAJOR_ARCANA_COUNT - 1);
+}
+
+ArcanaConfig getConfig(int argc, const char *argv[]) {
+    ArcanaConfig result;
+    char c;
+    while(--argc > 0 && (*++argv)[0] == '-'){
+
+        printf("%c\n",c);
+        while (c = *++argv[0]){
+            switch(c){
+                case 'i':
+                    result.interactive = 1;
+                    break;
+                //case more arguments
+                default:
+                    result.interactive = 0;
+                    break;
+            }
+        }
+    }
+
+    return result;
 }
 
 

@@ -1,6 +1,9 @@
 #ifndef ARCAN_A_ARCANA_H
 #define ARCAN_A_ARCANA_H
 #include "arcana-types.h"
+
+ArcanaConfig getConfig(int argc, const char *argv[]);
+
 Card* getMyCard(unsigned char suitIndex, unsigned char minorIndex);
 
 unsigned char getIndex(unsigned char suitIndex, unsigned char minorIndex);
