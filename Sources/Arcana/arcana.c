@@ -245,9 +245,7 @@ const char* getSuit(unsigned int suitIndex){
 
 Card *getMyCard(unsigned char suitIndex, unsigned char minorIndex) {
 
-    Card *myCard = (Card*) malloc(sizeof(Card));
-    myCard->index = getIndex(suitIndex,minorIndex);
-    myCard->inverted = 0;
+    Card *myCard = makeCard(suitIndex,minorIndex);
     identifyCard(myCard);
     if (isCourtCard(myCard)) {
         printf("got a court card\n");
@@ -282,6 +280,18 @@ ArcanaConfig getConfig(int argc, const char *argv[]) {
     }
 
     return result;
+}
+
+Card *makeCard(unsigned char suitIndex, unsigned char minorIndex) {
+    Card *myCard = (Card*) malloc(sizeof(Card));
+    myCard->index = getIndex(suitIndex,minorIndex);
+    myCard->inverted = 0;
+
+    if (validateCard(myCard)){
+        return myCard;
+    }
+
+    return NULL;
 }
 
 

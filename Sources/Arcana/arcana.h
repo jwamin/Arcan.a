@@ -4,6 +4,7 @@
 
 ArcanaConfig getConfig(int argc, const char *argv[]);
 
+Card* makeCard(unsigned char suitIndex, unsigned  char minorIndex);
 Card* getMyCard(unsigned char suitIndex, unsigned char minorIndex);
 
 unsigned char getIndex(unsigned char suitIndex, unsigned char minorIndex);
