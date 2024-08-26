@@ -2,7 +2,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#ifndef _STDLIB_H_
+#ifndef _HAS_ARC4RANDOM
+#warning "_HAS_ARC4RANDOM unset will try to link bsd"
 #include <bsd/bsd.h>
 #endif
 
