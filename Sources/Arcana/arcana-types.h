@@ -8,6 +8,7 @@
 #define CARD_COUNT 78
 #define SHUFFLE_COUNT CARD_COUNT-1
 #define DEAL 10
+#define DEAL_THREE 3
 #define MAJOR_ARCANA_COUNT 22
 #define MINOR_ARCANA_COUNT 14
 #define TOTAL (MAJOR_ARCANA_COUNT+(MINOR_ARCANA_COUNT*4))
@@ -16,6 +17,7 @@
 
 typedef struct ArcanaConfig {
     unsigned char interactive;
+    unsigned char threeCard;
 } ArcanaConfig;
 
 typedef enum Major_Arcana {
@@ -67,6 +69,7 @@ typedef struct Reading {
     struct Card* deck;
     struct Card* courtCardForQuerant;
     unsigned char current;
+    unsigned char count;
 } Reading;
 
 #endif //ARCANA_TYPES_H

@@ -11,10 +11,11 @@ unsigned char getIndex(unsigned char suitIndex, unsigned char minorIndex);
 
 Card* deal(Card *myCard);
 
-Reading *startReading(Card *myCard, Card *deck);
+Reading *startReading(Card *myCard, Card *deck, unsigned char count);
 unsigned char continueReading(Reading *reading);
 
 void readMyTarot(Card* deck);
+void readThreeCard(Card* deck);
 
 struct Card* shuffle(Card* deck); //or boogie?
 
