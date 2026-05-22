@@ -12,7 +12,7 @@
 struct Card* deal(Card* myCard){
 
     if (!validateCard(myCard) || !isCourtCard(myCard)){
-        printf("IF you don't pick a court card, i'm not reading your tarot\n");
+        printf("Choose a court card as your significator — the cards will not speak otherwise.\n");
         return NULL;
     }
 
@@ -50,19 +50,33 @@ unsigned char validateCard(Card* card){
 void readMyTarot(Card* deck){
 
     if (!validateCard(deck)){
-        printf("I failed to read your tarot - This is a VERY bad omen.\n");
+        printf("The cards lie in darkness, unreadable. A heavy omen.\n");
         return;
     }
 
-    printf("Your %d-card tarot reading:\n",DEAL);
+    printf("The spread is laid. Your %d-card reading:\n\n",DEAL);
     for (int i = 0; i < DEAL; ++i) {
-        printf("Card %d: ",i+1);
+        printf("  Card %d — ",i+1);
         identifyCard(&deck[i]);
     }
-    printf("Best o' luck!\n");
+    printf("\nMay the cards light your way.\n");
 }
 
-Reading *startReading(Card *myCard, Card *deck) {
+void readThreeCard(Card* deck) {
+    if (!validateCard(deck)) {
+        printf("The cards lie in darkness, unreadable. A heavy omen.\n");
+        return;
+    }
+    const char* positions[DEAL_THREE] = {"Past", "Present", "Future"};
+    printf("Three cards rise from the dark:\n\n");
+    for (int i = 0; i < DEAL_THREE; ++i) {
+        printf("  %s — ", positions[i]);
+        identifyCard(&deck[i]);
+    }
+    printf("\nMay the cards light your way.\n");
+}
+
+Reading *startReading(Card *myCard, Card *deck, unsigned char count) {
 
     Reading *reading = malloc(sizeof(Reading));
     if (!reading) {
@@ -72,6 +86,7 @@ Reading *startReading(Card *myCard, Card *deck) {
     reading->courtCardForQuerant = myCard;
     reading->current = 0;
     reading->deck = deck;
+    reading->count = count;
 
     return reading;
 
@@ -80,12 +95,17 @@ Reading *startReading(Card *myCard, Card *deck) {
 unsigned char continueReading(Reading *reading) {
     unsigned char i = reading->current;
 
-    if (i < DEAL) {
-        printf("Card %d: ", i + 1);
+    if (i < reading->count) {
+        if (reading->count == DEAL_THREE) {
+            const char* positions[DEAL_THREE] = {"Past", "Present", "Future"};
+            printf("  %s — ", positions[i]);
+        } else {
+            printf("  Card %d — ", i + 1);
+        }
         identifyCard(&reading->deck[i]);
         i++;
         reading->current = i;
-        return (i == DEAL) ? 0 : 1;
+        return (i == reading->count) ? 0 : 1;
     } else {
         return 0;
     }
@@ -119,13 +139,12 @@ struct Card* shuffle(Card *deck){
 
 void identifyCard(Card* card) {
     unsigned int index = card->index;
+    const char* orientation = card->inverted ? "Reversed" : "Upright";
 
     if (index < 22) {
-        // MAJOR ARCANA
         const char* majorString = getMajorString(card->index);
-        printf("Key %d is in the MAJOR ARCANA: %s, isInverted: %d\n", card->index, majorString, card->inverted);
+        printf("%s  (%s)\n", majorString, orientation);
     } else {
-        //MINOR ARCANA
         unsigned int minor_index = index - 22;
         unsigned int suitIndex = minor_index / 14;
         unsigned int cardNumber = minor_index % 14;
@@ -133,7 +152,7 @@ void identifyCard(Card* card) {
         const char* suitString = getSuit(suitIndex);
         const char* str = getMinorString(cardNumber+1);
 
-        printf("Key %d is in the Minor Arcana: The %s of %s, isInverted: %d\n", index, str, suitString, card->inverted);
+        printf("The %s of %s  (%s)\n", str, suitString, orientation);
     }
 
 }
@@ -161,59 +180,73 @@ unsigned char isCourtCard(Card* card){
 const char* getMajorString(unsigned int cardNumber) {
         switch (cardNumber) {
             case FOOL:
-                return "0: THE FOOL";
+                return "0 — THE FOOL";
             case MAGICIAN:
-                return "I: THE MAGICIAN";
+                return "I — THE MAGICIAN";
             case HIGH_PRIESTESS:
-                return "II: THE HIGH PRIESTESS";
+                return "II — THE HIGH PRIESTESS";
             case EMPRESS:
-                return "III: THE EMPRESS";
+                return "III — THE EMPRESS";
             case EMPEROR:
-                return "IV: THE EMPEROR";
+                return "IV — THE EMPEROR";
             case HIEROPHANT:
-                return "V: THE HIEROPHANT";
+                return "V — THE HIEROPHANT";
             case LOVERS:
-                return "VI: THE LOVERS";
+                return "VI — THE LOVERS";
             case CHARIOT:
-                return "VII: THE CHARIOT";
+                return "VII — THE CHARIOT";
             case STRENGTH:
-                return "VIII: STRENGTH";
+                return "VIII — STRENGTH";
             case HERMIT:
-                return "IX: THE HERMIT";
+                return "IX — THE HERMIT";
             case WHEEL_OF_FORTUNE:
-                return "X: WHEEL OF FORTUNE";
+                return "X — WHEEL OF FORTUNE";
             case JUSTICE:
-                return "XI: JUSTICE";
+                return "XI — JUSTICE";
             case HANGED_MAN:
-                return "XII: THE HANGED MAN";
+                return "XII — THE HANGED MAN";
             case DEATH:
                 // Remember, there's only meant to be one in each pack...
-                return "XIII: DEATH";
+                return "XIII — DEATH";
             case TEMPERANCE:
-                return "XIV: TEMPERENCE";
+                return "XIV — TEMPERANCE";
             case DEVIL:
-                return "XV: THE DEVIL";
+                return "XV — THE DEVIL";
             case TOWER:
-                return "XVI: THE TOWER";
+                return "XVI — THE TOWER";
             case STAR:
-                return "XVII: THE STAR";
+                return "XVII — THE STAR";
             case MOON:
-                return "XVIII: THE MOON";
+                return "XVIII — THE MOON";
             case SUN:
-                return "XIX: THE SUN";
+                return "XIX — THE SUN";
             case JUDGEMENT:
-                return "XX: JUDGEMENT";
+                return "XX — JUDGEMENT";
             case WORLD:
-                return "XXI: THE WORLD";
+                return "XXI — THE WORLD";
             default:
-                printf("major arcana card out of index <0 / >22");
+                fprintf(stderr, "major arcana index out of range\n");
                 exit(EXIT_FAILURE);
         }
 }
 
+static const char* toRoman(unsigned int n) {
+    switch (n) {
+        case 2:  return "II";
+        case 3:  return "III";
+        case 4:  return "IV";
+        case 5:  return "V";
+        case 6:  return "VI";
+        case 7:  return "VII";
+        case 8:  return "VIII";
+        case 9:  return "IX";
+        case 10: return "X";
+        default: return "";
+    }
+}
+
 const char* getMinorString(unsigned int suitIndex) {
 
-    // Is a court card or ace
     if (suitIndex > 10 || suitIndex == 1) {
         switch (suitIndex) {
             case ACE:
@@ -227,13 +260,11 @@ const char* getMinorString(unsigned int suitIndex) {
             case KING:
                 return "King";
             default:
-                printf("this shouldn't happen");
+                fprintf(stderr, "minor arcana index out of range\n");
                 exit(EXIT_FAILURE);
         }
     } else {
-        static char cardNumber[10];
-        snprintf(cardNumber, 10, "%d", suitIndex);
-        return cardNumber;
+        return toRoman(suitIndex);
     }
 }
 
@@ -257,10 +288,8 @@ Card *getMyCard(unsigned char suitIndex, unsigned char minorIndex) {
     Card *myCard = makeCard(suitIndex,minorIndex);
     identifyCard(myCard);
     if (isCourtCard(myCard)) {
-        printf("got a court card\n");
         return myCard;
     }
-    printf("not a court card\n");
     return NULL;
 
 }
@@ -274,11 +303,13 @@ ArcanaConfig getConfig(int argc, const char *argv[]) {
     char c = '\0';
     while(--argc > 0 && (*++argv)[0] == '-'){
 
-        printf("%c\n",c);
         while (c = *++argv[0]){
             switch(c){
                 case 'i':
                     result.interactive = 1;
+                    break;
+                case '3':
+                    result.threeCard = 1;
                     break;
                 //case more arguments
                 default:
