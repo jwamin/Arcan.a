@@ -17,6 +17,10 @@ struct Card* deal(Card* myCard){
     }
 
     Card* cards = calloc(SHUFFLE_COUNT, sizeof(Card));
+    if (!cards) {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
     Card* currentCard;
 
     //initialize deck
@@ -61,6 +65,10 @@ void readMyTarot(Card* deck){
 Reading *startReading(Card *myCard, Card *deck) {
 
     Reading *reading = malloc(sizeof(Reading));
+    if (!reading) {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
     reading->courtCardForQuerant = myCard;
     reading->current = 0;
     reading->deck = deck;
@@ -89,7 +97,7 @@ struct Card* shuffle(Card *deck){
     unsigned int swapIndex;
     Card* swap;
 
-    for (unsigned int current = 0; current < CARD_COUNT; ++current) {
+    for (unsigned int current = 0; current < SHUFFLE_COUNT; ++current) {
         swapIndex = current + arc4random_uniform(CARD_COUNT - current);
         if (swapIndex != current){
             //printf("%d will swap %d with %d\n",current,deck[current].index,deck[swapIndex].index);
@@ -223,9 +231,9 @@ const char* getMinorString(unsigned int suitIndex) {
                 exit(EXIT_FAILURE);
         }
     } else {
-        char *out = malloc(sizeof(char)*10);
-        sprintf(out,"%d",suitIndex);
-        return out;
+        static char cardNumber[10];
+        snprintf(cardNumber, 10, "%d", suitIndex);
+        return cardNumber;
     }
 }
 
@@ -262,8 +270,8 @@ unsigned char getIndex(unsigned char suitIndex, unsigned char minorIndex) {
 }
 
 ArcanaConfig getConfig(int argc, const char *argv[]) {
-    ArcanaConfig result;
-    char c;
+    ArcanaConfig result = {0};
+    char c = '\0';
     while(--argc > 0 && (*++argv)[0] == '-'){
 
         printf("%c\n",c);
@@ -285,6 +293,10 @@ ArcanaConfig getConfig(int argc, const char *argv[]) {
 
 Card *makeCard(unsigned char suitIndex, unsigned char minorIndex) {
     Card *myCard = (Card*) malloc(sizeof(Card));
+    if (!myCard) {
+        fprintf(stderr, "Memory allocation failed\n");
+        exit(EXIT_FAILURE);
+    }
     myCard->index = getIndex(suitIndex,minorIndex);
     myCard->inverted = 0;
 

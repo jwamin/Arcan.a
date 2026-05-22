@@ -21,8 +21,14 @@ int main(int argc, const char *argv[]){
 
     Card *deckTop = deal(&myCard);
 
+    if (!deckTop) {
+        fprintf(stderr, "Failed to create a new deck\n");
+        exit(EXIT_FAILURE);
+    }
+
+    Reading *thisReading = NULL;
     if (config.interactive) {
-        Reading *thisReading = startReading(&myCard,deckTop);
+        thisReading = startReading(&myCard,deckTop);
         getchar();
         unsigned char isReading = continueReading(thisReading);
         while(1){
@@ -33,9 +39,11 @@ int main(int argc, const char *argv[]){
             }
         }
         printf("Best o' luck!\n");
+        
     } else {
         readMyTarot(deckTop);
     }
-
+    free(deckTop);
+    free(thisReading);
     return 0;
 }
