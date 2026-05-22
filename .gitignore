@@ -1,3 +1,15 @@
 /cmake-build-*/
 /.build
 /.swiftpm
+
+# CMake in-source build artifacts
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+/Arcan.a
+*.a
+
+# Unrelated system files
+signal-desktop-keyring.gpg
+signal-desktop.sources
